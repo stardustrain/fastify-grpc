@@ -1,0 +1,28 @@
+{
+  "name": "grpc-toy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./esbuild.mjs",
+    "codegen": "pnpm run codegen:js && pnpm run codegen:type",
+    "codegen:js": "pbjs -t static-module -w commonjs -o app/__generated__/compiled.js app/proto/*.proto",
+    "codegen:type": "pbts -o app/__generated__/compiled.d.ts app/__generated__/compiled.js",
+    "start": "node ./dist/out.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.21.1",
+    "protobufjs-cli": "^1.1.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@grpc.ts/fastify-server": "^1.1.4",
+    "@grpc/grpc-js": "^1.10.7",
+    "fastify": "^4.27.0",
+    "http-graceful-shutdown": "^3.1.13"
+  }
+}
